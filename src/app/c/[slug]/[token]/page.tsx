@@ -73,7 +73,9 @@ export default async function InvitePage({ params }: PageProps<"/c/[slug]/[token
       </div>
 
       <footer className="pb-10 text-center text-xs text-muted">
-        Organização <span className="font-script text-base">ArtBrown Company</span>
+        <span className="block">Organização</span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo.png" alt="ArtBrown Company" className="mx-auto mt-2 h-10 w-auto opacity-80" />
       </footer>
     </main>
   );

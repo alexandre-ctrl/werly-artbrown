@@ -33,9 +33,9 @@ export default function HomePage() {
             <div className="plate aspect-[4/5]">
               <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_30%_10%,#fbf7f0,#e8dccb_55%,#cdb69a)]" />
               <div className="absolute inset-[7%] border border-white/60" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-gold-700">
-                <span className="font-script text-[clamp(4rem,9vw,7rem)] leading-none">ArtBrown</span>
-                <span className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.5em]">Company</span>
+              <div className="absolute inset-0 flex items-center justify-center p-[14%]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="ArtBrown Company" className="w-full drop-shadow-[0_1px_0_rgba(255,255,255,0.6)]" />
               </div>
             </div>
             <figcaption className="plate-caption">
