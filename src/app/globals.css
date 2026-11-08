@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold-50: #f8f4ef;
+  --color-gold-100: #efe7dc;
+  --color-gold-200: #e0d1bd;
+  --color-gold-300: #cdb69a;
+  --color-gold-400: #bba283;
+  --color-gold: #a98f71;
+  --color-gold-600: #8f7659;
+  --color-gold-700: #735e47;
+  --color-cream: #fbf8f3;
+  --color-ivory: #fffdf9;
+  --color-ink: #3a3129;
+  --color-muted: #7d7166;
+  --color-line: #e9e1d6;
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-script: var(--font-great-vibes), "Great Vibes", cursive;
+  --font-sans: var(--font-lato), "Lato", system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+.font-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-gold text-white shadow-sm hover:bg-gold-600;
+  }
+  .btn-outline {
+    @apply border border-gold text-gold-700 hover:bg-gold-50;
+  }
+  .btn-ghost {
+    @apply text-gold-700 hover:bg-gold-50;
+  }
+  .btn-danger {
+    @apply border border-red-200 text-red-700 hover:bg-red-50;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .input {
+    @apply w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-gold focus:ring-2 focus:ring-gold/20;
+  }
+  .label {
+    @apply mb-1 block text-xs font-semibold uppercase tracking-wider text-muted;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-white p-5 shadow-[0_1px_2px_rgba(58,49,41,0.04)];
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .table-base {
+    @apply w-full text-left text-sm;
+  }
+  .table-base th {
+    @apply border-b border-line px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted;
+  }
+  .table-base td {
+    @apply border-b border-line/70 px-3 py-2.5 align-top;
+  }
+}
