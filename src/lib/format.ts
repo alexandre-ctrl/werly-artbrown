@@ -89,5 +89,6 @@ export function coupleNames(event: { partner1_name: string | null; partner2_name
 
 export function publicStorageUrl(bucket: string, path: string | null | undefined) {
   if (!path) return null;
-  return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucket}/${path}`;
+  const base = (process.env.NEXT_PUBLIC_SUPABASE_BROWSER_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL ?? "").replace(/\/$/, "");
+  return `${base}/storage/v1/object/public/${bucket}/${path}`;
 }
