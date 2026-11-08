@@ -106,7 +106,8 @@ h3,
   mix-blend-mode: multiply;
   background-image: var(--grain);
 }
-.site > * {
+.site > main,
+.site > footer {
   position: relative;
   z-index: 1;
 }

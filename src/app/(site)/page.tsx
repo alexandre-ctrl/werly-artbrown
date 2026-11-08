@@ -1,4 +1,6 @@
-import { portfolio, process, services, testimonials } from "@/content/site";
+import { portfolio, process, services, social, testimonials } from "@/content/site";
+import { InstagramIcon } from "@/components/instagram-icon";
+import { siteUrl } from "@/lib/format";
 import { LeadForm } from "./lead-form";
 
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
@@ -6,8 +8,18 @@ const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
 export default function HomePage() {
   const [featured, ...others] = testimonials;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "ArtBrown Company",
+    url: siteUrl(),
+    logo: `${siteUrl()}/logo.png`,
+    sameAs: [social.instagram.url],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Frontispício */}
       <section className="gutter">
         <div className="mx-auto grid min-h-[calc(100svh-88px)] max-w-[1320px] items-center gap-12 py-12 lg:grid-cols-[7fr_5fr] lg:gap-20">
@@ -126,6 +138,11 @@ export default function HomePage() {
               </figure>
             ))}
           </div>
+          <div data-reveal className="mt-16 flex justify-center lg:mt-24">
+            <a href={social.instagram.url} target="_blank" rel="noopener noreferrer" className="link-line">
+              Veja mais no Instagram {social.instagram.handle}
+            </a>
+          </div>
         </div>
       </section>
 
@@ -170,6 +187,14 @@ export default function HomePage() {
               <div>
                 <dt className="smallcaps">Atendimento</dt>
                 <dd className="mt-1 text-ink/80">Casamentos, 15 anos, aniversários, bodas e eventos corporativos.</dd>
+              </div>
+              <div>
+                <dt className="smallcaps">Instagram</dt>
+                <dd className="mt-1">
+                  <a href={social.instagram.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gold-700 hover:text-ink">
+                    <InstagramIcon /> {social.instagram.handle}
+                  </a>
+                </dd>
               </div>
               <div>
                 <dt className="smallcaps">Prefere conversar agora?</dt>

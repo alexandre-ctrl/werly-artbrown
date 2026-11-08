@@ -76,3 +76,7 @@ export const process = [
     description: "Nossa equipe conduz a cerimônia e a recepção. Vocês só precisam aproveitar.",
   },
 ];
+
+export const social = {
+  instagram: { handle: "@artbrowncomp", url: "https://www.instagram.com/artbrowncomp/" },
+};

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { RevealObserver } from "@/components/reveal";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { InstagramIcon } from "@/components/instagram-icon";
+import { social } from "@/content/site";
 
 const NAV = [
   { href: "/#servicos", label: "Serviços", n: "I" },
@@ -47,6 +49,14 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
               <p className="mt-4 max-w-sm font-title text-xl italic leading-snug text-ink/80">
                 Organização de casamentos e eventos, com cuidado em cada detalhe.
               </p>
+              <a
+                href={social.instagram.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-700 hover:text-ink"
+              >
+                <InstagramIcon className="h-5 w-5" /> {social.instagram.handle}
+              </a>
             </div>
             <div>
               <p className="smallcaps mb-4 text-ink">Navegação</p>
@@ -64,6 +74,11 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
               <ul className="space-y-2 text-sm text-muted">
                 <li><Link href="/politica-de-privacidade" className="hover:text-ink">Política de privacidade</Link></li>
                 <li><Link href="/login" className="hover:text-ink">Área do cliente e equipe</Link></li>
+                <li>
+                  <a href={social.instagram.url} target="_blank" rel="noopener noreferrer" className="hover:text-ink">
+                    Instagram
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
