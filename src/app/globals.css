@@ -80,3 +80,176 @@ h3,
     @apply border-b border-line/70 px-3 py-2.5 align-top;
   }
 }
+
+/* =============================================================================
+   Site institucional — linguagem editorial ("monografia impressa")
+   Inspirada em referências de quiet luxury: filetes finos, folios numerados,
+   versaletes, textura de papel e movimento só com transform/opacity.
+   ============================================================================= */
+.site {
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --gutter: clamp(20px, 5vw, 72px);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  position: relative;
+  background:
+    radial-gradient(120% 70% at 15% 0%, rgba(255, 252, 246, 0.9), rgba(255, 252, 246, 0) 55%),
+    linear-gradient(180deg, #f8f3eb, #f3ece1);
+  overflow-x: clip;
+}
+.site::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+  background-image: var(--grain);
+}
+.site > * {
+  position: relative;
+  z-index: 1;
+}
+.site ::selection {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+.site :focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.gutter {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold-700);
+}
+.kicker::before {
+  content: "";
+  width: 40px;
+  height: 1px;
+  flex: none;
+  background: var(--color-gold);
+}
+.smallcaps {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.display em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-gold-700);
+}
+.plate {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-gold-100);
+  box-shadow: 0 34px 70px -34px rgba(58, 49, 41, 0.45), inset 0 0 0 1px rgba(58, 49, 41, 0.08);
+}
+.plate-caption {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+.plate-caption span:last-child {
+  color: var(--color-gold-700);
+  white-space: nowrap;
+}
+.rule-top {
+  border-top: 1px solid var(--color-ink);
+}
+.link-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+.link-line::after {
+  content: "";
+  width: 44px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transition: transform 0.72s var(--ease-reveal);
+}
+@media (hover: hover) {
+  .link-line:hover::after {
+    transform: scaleX(1.6);
+  }
+}
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-serif);
+  font-size: 4.6em;
+  line-height: 0.8;
+  padding: 0.08em 0.12em 0 0;
+  color: var(--color-gold-700);
+}
+
+/* Entradas: só com JS e com movimento permitido; sem JS tudo fica visível. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    transition:
+      opacity 0.9s var(--ease-reveal),
+      transform 1.1s var(--ease-reveal);
+    transition-delay: var(--delay, 0ms);
+  }
+  .js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* Entrada do hero (CSS puro, também sem JS) */
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+    }
+  }
+}

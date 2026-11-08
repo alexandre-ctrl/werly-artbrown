@@ -1,79 +1,80 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
+import { RevealObserver } from "@/components/reveal";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 
 const NAV = [
-  { href: "/#servicos", label: "Serviços" },
-  { href: "/#portfolio", label: "Portfólio" },
-  { href: "/#depoimentos", label: "Depoimentos" },
-  { href: "/#orcamento", label: "Orçamento" },
+  { href: "/#servicos", label: "Serviços", n: "I" },
+  { href: "/#processo", label: "Como trabalhamos", n: "II" },
+  { href: "/#portfolio", label: "Portfólio", n: "III" },
+  { href: "/#depoimentos", label: "Depoimentos", n: "IV" },
 ];
 
 export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
-    <>
-      <header className="sticky top-0 z-30 border-b border-line/70 bg-cream/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-          <Link href="/" aria-label="ArtBrown Company — início">
-            <Logo className="h-12" />
+    <div className="site flex min-h-full flex-1 flex-col">
+      <header className="gutter sticky top-0 z-30 bg-gradient-to-b from-[#f8f3eb] from-55% via-[#f8f3ebd0] to-transparent pb-6 pt-4">
+        <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-6">
+          <Link href="/" aria-label="ArtBrown Company — início" className="shrink-0">
+            <Logo className="h-11" />
           </Link>
-          <nav className="hidden items-center gap-7 text-sm font-semibold uppercase tracking-wider text-muted md:flex">
+          <nav aria-label="Seções" className="hidden items-center gap-8 lg:flex">
             {NAV.map((item) => (
-              <Link key={item.href} href={item.href} className="transition hover:text-gold-700">
+              <Link key={item.href} href={item.href} className="smallcaps transition hover:text-ink">
+                <span className="mr-1.5 text-gold">{item.n}</span>
                 {item.label}
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-2">
-            <Link href="/login" className="btn btn-ghost btn-sm">
+          <div className="flex items-center gap-5">
+            <Link href="/login" className="smallcaps hidden transition hover:text-ink sm:inline">
               Área do cliente
             </Link>
-            <Link href="/#orcamento" className="btn btn-primary btn-sm hidden sm:inline-flex">
-              Pedir orçamento
+            <Link href="/#orcamento" className="btn btn-primary btn-sm">
+              Orçamento
             </Link>
           </div>
         </div>
       </header>
+
       <main className="flex-1">{children}</main>
-      <footer className="border-t border-line bg-ivory">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 text-sm text-muted md:grid-cols-3">
-          <div>
-            <Logo className="h-14" />
-            <p className="mt-3 max-w-xs">Organização de casamentos e eventos com elegância e cuidado em cada detalhe.</p>
+
+      <footer className="gutter pb-10 pt-20">
+        <div className="mx-auto max-w-[1320px]">
+          <div className="rule-top grid gap-10 pt-10 md:grid-cols-[2fr_1fr_1fr]">
+            <div>
+              <Logo className="h-14" />
+              <p className="mt-4 max-w-sm font-title text-xl italic leading-snug text-ink/80">
+                Organização de casamentos e eventos, com cuidado em cada detalhe.
+              </p>
+            </div>
+            <div>
+              <p className="smallcaps mb-4 text-ink">Navegação</p>
+              <ul className="space-y-2 text-sm text-muted">
+                {NAV.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="hover:text-ink">{item.label}</Link>
+                  </li>
+                ))}
+                <li><Link href="/#orcamento" className="hover:text-ink">Orçamento</Link></li>
+              </ul>
+            </div>
+            <div>
+              <p className="smallcaps mb-4 text-ink">Institucional</p>
+              <ul className="space-y-2 text-sm text-muted">
+                <li><Link href="/politica-de-privacidade" className="hover:text-ink">Política de privacidade</Link></li>
+                <li><Link href="/login" className="hover:text-ink">Área do cliente e equipe</Link></li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <p className="label">Navegação</p>
-            <ul className="space-y-1.5">
-              {NAV.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="hover:text-gold-700">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="label">Institucional</p>
-            <ul className="space-y-1.5">
-              <li>
-                <Link href="/politica-de-privacidade" className="hover:text-gold-700">
-                  Política de privacidade
-                </Link>
-              </li>
-              <li>
-                <Link href="/login" className="hover:text-gold-700">
-                  Área do cliente e equipe
-                </Link>
-              </li>
-            </ul>
+          <div className="mt-12 flex flex-wrap justify-between gap-4 border-t border-line pt-6">
+            <p className="smallcaps">© {new Date().getFullYear()} ArtBrown Company</p>
+            <p className="smallcaps">Casamentos · Eventos · Cerimonial</p>
           </div>
         </div>
-        <p className="border-t border-line py-4 text-center text-xs text-muted">
-          © {new Date().getFullYear()} ArtBrown Company. Todos os direitos reservados.
-        </p>
       </footer>
       <WhatsAppFloat />
-    </>
+      <RevealObserver />
+    </div>
   );
 }

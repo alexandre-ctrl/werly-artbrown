@@ -57,3 +57,22 @@ export const testimonials = [
     text: "Profissionalismo e sensibilidade do começo ao fim. Recomendamos de olhos fechados.",
   },
 ];
+
+export const process = [
+  {
+    title: "Primeira conversa",
+    description: "Entendemos a história de vocês, o estilo do evento, o número de convidados e o orçamento.",
+  },
+  {
+    title: "Planejamento",
+    description: "Cronograma, checklist e indicação de fornecedores, tudo organizado na Área do Cliente.",
+  },
+  {
+    title: "Convidados",
+    description: "Lista, confirmação de presença pelo link personalizado e distribuição das mesas.",
+  },
+  {
+    title: "O grande dia",
+    description: "Nossa equipe conduz a cerimônia e a recepção. Vocês só precisam aproveitar.",
+  },
+];
